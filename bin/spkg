@@ -35,17 +35,7 @@ if [ "$export" != "" ]; then
   . $export
 fi
 
-if [ "$build_dir" == "" ]; then
-  export build_dir=$HOME/build
-fi
-
-if [ "$source_dir" == "" ]; then
-  export source_dir=$HOME/source
-fi
-
-if [ "$root" == "" ]; then
-  export root=$HOME/root
-fi
+. $spkg_dir/helper/export.sh
 
 if [ "$install" != "" ]; then
   $spkg_dir/helper/install.sh $install
