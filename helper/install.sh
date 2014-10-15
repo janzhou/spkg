@@ -1,6 +1,13 @@
 #! /bin/sh
 
-. $spkg_dir/pkg/$1
+load () {
+  export name=
+  export version=
+  export extension=
+  export source=
+  export require=
+  . $spkg_dir/pkg/$1
+}
 
 info() { echo -e "\033[1;32m>>> \033[0m$@"; }
 error() { echo -e "\033[1;31m>>> \033[0m$@" >&2; }
@@ -30,7 +37,25 @@ install () {
   type ${name}_install &>/dev/null && run ${name}_install || run make install
 }
 
+load $1
+for pkg in `cat $root/var/spkg`
+do
+  if [ $pkg == $name ] ; then
+    exit
+  fi
+done
+
+load $1
+for pkg in $require
+do
+$spkg_dir/bin/spkg -i $pkg
+done
+
+load $1
 fetch
 config
 build
 install
+
+mkdir -p $root/var
+echo $name $version >> $root/var/spkg
