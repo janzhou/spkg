@@ -1,0 +1,10 @@
+#! /bin/bash
+
+export name=nix
+export version=1.7
+export extension=tar.xz
+export source="wget http://nixos.org/releases/nix/${name}-${version}/${name}-${version}.${extension}"
+
+nix_config () {
+    ./configure --prefix=$root --with-store-dir=$nix/store --localstatedir=$nix/var
+}

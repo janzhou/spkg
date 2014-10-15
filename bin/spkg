@@ -1,0 +1,52 @@
+#! /bin/sh
+
+# Absolute path to this script, e.g. /home/user/bin/foo.sh
+SCRIPT=$(readlink -f "$0")
+# Absolute path this script is in, thus /home/user/bin
+export spkg_dir="$(dirname "$SCRIPT")/.."
+
+usage () {
+  echo "spkg -i pkg -e export"
+}
+
+while [ "$1" != "" ]; do
+  case $1 in
+    -e | --export )
+      export=$2
+      shift
+      shift
+    ;;
+    -i | --install )
+      install=$2
+      shift
+      shift
+    ;;
+    -h | --help )
+      usage
+      exit
+    ;;
+    * )
+      usage
+      exit 1
+  esac
+done
+
+if [ "$export" != "" ]; then
+  . $export
+fi
+
+if [ "$build_dir" == "" ]; then
+  export build_dir=$HOME/build
+fi
+
+if [ "$source_dir" == "" ]; then
+  export source_dir=$HOME/source
+fi
+
+if [ "$root" == "" ]; then
+  export root=$HOME/root
+fi
+
+if [ "$install" != "" ]; then
+  $spkg_dir/helper/install.sh $install
+fi

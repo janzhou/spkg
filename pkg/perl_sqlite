@@ -1,0 +1,10 @@
+#! /bin/bash
+
+export name=perl_sqlite
+export version=1.40
+export extension=tar.gz
+export source="https://pkgs.fedoraproject.org/repo/pkgs/perl-DBD-SQLite/DBD-SQLite-1.40.tar.gz/b9876882186499583428b14cf5c0e29c/DBD-SQLite-1.40.tar.gz"
+
+perl_sqlite_config () {
+    perl Makefile.PL PREFIX=$root
+}

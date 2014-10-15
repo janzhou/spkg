@@ -1,0 +1,6 @@
+#! /bin/bash
+
+export name=sqlite-autoconf
+export version=3080300
+export extension=tar.gz
+export source="http://www.sqlite.org/2014/$name-$version.$extension"

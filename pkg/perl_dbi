@@ -1,0 +1,10 @@
+#! /bin/bash
+
+export name=perl_dbi
+export version=1.631
+export extension=tar.gz
+export source="https://pkgs.fedoraproject.org/repo/pkgs/perl-DBI/DBI-1.631.tar.gz/444d3c305e86597e11092b517794a840/DBI-1.631.tar.gz"
+
+perl_dbi_config () {
+    perl Makefile.PL PREFIX=$root
+}

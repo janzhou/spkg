@@ -1,0 +1,26 @@
+#! /bin/bash
+
+export name=bzip2
+export version=1.0.6
+export source="http://bzip.org/$version/$name-$version.tar.gz"
+export extension=tar.gz
+
+bzip2_config () {
+  echo bzip2_config
+}
+
+bzip2_build () {
+  echo bzip2_build
+  make -f Makefile-libbz2_so
+}
+
+bzip2_install () {
+  echo bzip2_install
+  make install PREFIX=$root
+  cp libbz2.so.1.0 libbz2.so.1.0.6 $root/lib
+}
+
+#export -f bzip2_build
+#export -f bzip2_install
+
+#helper/build.sh

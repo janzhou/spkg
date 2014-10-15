@@ -1,0 +1,10 @@
+#! /bin/bash
+
+export name=perl_curl
+export version=4.17
+export extension=tar.gz
+export source="https://pkgs.fedoraproject.org/repo/pkgs/perl-WWW-Curl/WWW-Curl-4.17.tar.gz/997ac81cd6b03b30b36f7cd930474845/WWW-Curl-4.17.tar.gz"
+
+perl_curl_config () {
+    perl Makefile.PL PREFIX=$root
+}
