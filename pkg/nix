@@ -1,10 +1,19 @@
 #! /bin/bash
 
 export name=nix
-export version=1.7
+export version=1.6.1
 export extension=tar.xz
 export source="wget http://nixos.org/releases/nix/${name}-${version}/${name}-${version}.${extension}"
+export require="
+bzip
+curl
+sqlite-autoconf
+perl_curl
+perl_dbi
+perl_sqlite
+"
 
 nix_config () {
-    ./configure --prefix=$root --with-store-dir=$nix/store --localstatedir=$nix/var
+    echo $root
+    ./configure --prefix=$root --exec-prefix=$root --with-store-dir=$nix/store --localstatedir=$nix/var
 }
